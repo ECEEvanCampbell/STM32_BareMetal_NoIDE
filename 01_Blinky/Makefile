@@ -45,3 +45,6 @@ $(PROJECT).elf: $(OBJECTS)
 clean:
 	rm -f *.bin *.map *.elf $(CPUDIR) output.txt
 	find . -name '*.o' -delete
+
+burn:
+	st-flash write $(PROJECT).bin 0x8000000

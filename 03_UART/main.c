@@ -1,5 +1,6 @@
 #include "stm32f4xx.h"  // Include the STM32 HAL headers
 #include <stdint.h>
+#include <stdio.h>
 
 #define GPIOAEN		(1U<<0)
 #define UART2EN		(1U<<17)
@@ -23,10 +24,15 @@ int main(void) {
 	uart2_tx_init();
 	while(1)
 	{
-		uart2_write('Y');
+		printf("Hello from STM32F4...... \n\r");
 	}
 }
 
+int __io_putchar(int ch)
+{
+	uart2_write(ch);
+	return ch;
+}
 
 void uart2_tx_init(void)
 {

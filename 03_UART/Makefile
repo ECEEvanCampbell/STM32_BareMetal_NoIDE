@@ -8,7 +8,7 @@ DEFINES = -D__STARTUP_CLEAR_BSS -D__START=main -DSTM32F4 -DSTM32F411xx -DSTM32F4
 
 TOOLCHAIN = arm-none-eabi-
 CFLAGS = $(ARCH_FLAGS) $(DEFINES) $(CPU_DEFINES) $(INCLUDES) -Wall -ffunction-sections -fdata-sections -fno-builtin
-LFLAGS = --specs=nano.specs -Wl,--gc-sections -Wl,-Map=$(PROJECT).map -Tlink_stm32f411.ld
+LFLAGS = --specs=nosys.specs -Wl,--gc-sections -Wl,-Map=$(PROJECT).map -Tlink_stm32f411.ld
 
 # Add HAL source files
 #HAL_SRC = ./STM32CubeF4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
@@ -21,6 +21,7 @@ LFLAGS = --specs=nano.specs -Wl,--gc-sections -Wl,-Map=$(PROJECT).map -Tlink_stm
 #OBJECTS += $(HAL_SRC:.c=.o)
 #OBJECTS += ./STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.o
 OBJECTS += main.o
+OBJECTS += ./Includes/syscalls.o
 OBJECTS += startup_ARMCM4.o
 
 
